@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Gabriela:regular" rel="stylesheet" />
+    <style>
+        body{
+            font-family: 'Gabriela';
+        }
+    </style>
+    <title>task-10</title>
+</head>
+<body>
+    <h3>
+        Сформувати масив з 1000 елементів від 1 до 800. Порівняти час сортування бульбашкою і  вставкою.
+    </h3>
+
+    <script>
+
+        // Генеруємо масив
+        let array = []
+        for (let i = 0; i < 1000; i++) {
+            array.push(Math.floor(Math.random() * 800) + 1)
+        }
+
+        // Функція для сортування бульбашкою
+        function bubbleSort(arr) {
+            let n = arr.length
+            let swapped
+            do {
+                swapped = false;
+                for (let i = 0; i < n - 1; i++) {
+                    if (arr[i] > arr[i + 1]) {
+                        // Обмін елементів, якщо потрібно
+                        let temp = arr[i]
+                        arr[i] = arr[i + 1]
+                        arr[i + 1] = temp
+                        swapped = true
+                    }
+                }
+            } while (swapped)
+        }
+
+        // Функція для сортування вставкою
+        function insertionSort(arr) {
+            let n = arr.length
+            for (let i = 1; i < n; i++) {
+                let currentElement = arr[i]
+                let j = i - 1
+                while (j >= 0 && arr[j] > currentElement) {
+                    arr[j + 1] = arr[j]
+                    j--
+                }
+                arr[j + 1] = currentElement
+            }
+        }
+
+        // Замір часу сортування бульбашкою
+        let startTime = performance.now()
+        bubbleSort(array.slice()) // Копіюємо масив для сортування, щоб не впливати на оригінальний
+        let bubbleSortTime = performance.now() - startTime
+
+        // Замір часу сортування вставкою
+        startTime = performance.now()
+        insertionSort(array.slice())
+        let insertionSortTime = performance.now() - startTime
+
+        // Виводимо результати
+        document.write(`<h3>Час сортування бульбашкою: ${bubbleSortTime.toFixed(2)} мс</h3>`)
+        document.write(`<h3>Час сортування вставкою: ${insertionSortTime.toFixed(2)} мс</h3>`)
+
+    </script>
+</body>
+</html>

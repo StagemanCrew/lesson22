@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Gabriela:regular" rel="stylesheet" />
+    <style>
+        body{
+            font-family: 'Gabriela';
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <title>task-9</title>
+</head>
+<body>
+    <h3>
+        Дано дата виробництва йогурта (вводимо рік, місяць, день) та кількість днів придатності. Визначити чи є він придатним на даний момент.
+    </h3>
+
+    <script>
+
+        // Отримуємо поточну дату
+        let currentDate = new Date()
+
+        // Дата виробництва та кількість днів придатності
+        let manufactureDateStr = prompt("Введіть дату виробництва у форматі YYYY-MM-DD:")
+        let shelfLifeDays = parseInt(prompt("Введіть кількість днів придатності йогурту:"))
+
+        // Перетворюємо введений рядок на об'єкт Date
+        let manufactureDate = new Date(manufactureDateStr)
+
+        // Створюємо копію дати виробництва, оскільки ми будемо модифікувати цю дату
+        let productionDate = new Date(manufactureDate)
+
+        // Додаємо кількість днів придатності до дати виробництва
+        productionDate.setDate(productionDate.getDate() + shelfLifeDays)
+
+        // Перевіряємо, чи поточна дата не перевищує дати закінчення придатності
+        if (currentDate <= productionDate) {
+            // Розраховуємо різницю між датою закінчення придатності і поточною датою
+            let daysRemaining = Math.floor((productionDate - currentDate) / (24 * 60 * 60 * 1000))
+
+            alert("Йогурт є придатним.")
+            document.write("<h2>Йогурт є придатним.</h2>")
+            document.write(`<h3>Залишилося ${daysRemaining} днів придатності.</h3>`)
+        } else {
+            alert("Йогурт не придатний.")
+            document.write("<h2>Йогурт не придатний.</h2>")
+        }
+
+    </script>
+
+</body>
+</html>

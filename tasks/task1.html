@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Gabriela:regular" rel="stylesheet" />
+    <style>
+        body{
+            font-family: 'Gabriela';
+        }
+    </style>
+    <title>task-1</title>
+</head>
+<body>
+    <h3>
+        Визначити привітання у залежності від часу доби (Доброго дня, Доброго ранку, Доброго вечора).
+    </h3>
+
+    <script>
+
+        // Отримуємо поточний час
+        let currentTime = new Date()
+        let currentHour = currentTime.getHours()
+
+        // Визначаємо привітання в залежності від часу доби
+        let greeting;
+        if (currentHour >= 5 && currentHour < 12) {
+            greeting = "Доброго ранку!"
+        } else if (currentHour >= 12 && currentHour < 17) {
+            greeting = "Доброго дня!"
+        } else {
+            greeting = "Доброго вечора!"
+        }
+
+        // Виводимо привітання за допомогою alert
+        alert(greeting)
+        document.write(`<h2> ${greeting}</h2>`)
+        document.write(`<h3> ${currentTime} </h3>`)
+
+    </script>
+</body>
+</html>
